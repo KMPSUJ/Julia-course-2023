@@ -23,6 +23,8 @@ end
 startingKeyword - examples: for, while, struct, function, begin
 =#
 
+
+
 #=
 ------------------------------------------------------------
                     Control Flow
@@ -134,15 +136,16 @@ finally
 end
 
 
+
 #=
 ------------------------------------------------------------
                     begin - end
 ------------------------------------------------------------
-Returns the value of the lase expression.
+Returns the value of the last expression.
 =#
 z = begin
     x = 7
-    y =1
+    y = 1
     x + y
 end
 
@@ -158,7 +161,7 @@ z = (x=7; y=1; x+y)
 ------------------------------------------------------------
 =#
 
-# basic structure
+# standard syntax
 function foo()
     println("hello")
 end
@@ -197,18 +200,18 @@ function myadd(x, y)
     println("x+y") # won't be evaluated
 end
 
-# Type specifications
+# specify argument types
 mysub(x::Int, y::Int) = x - y
 mysub(x::Int16, y::Int16) = x - y
 
-# retyrn value specification
+# specify return type
 mymul(x, y)::Float16 = x * y
 
 # more advanced stuff
 function mypower(x::T, y::T, n::Integer)::T where T<:Number
     n < 0 && error("n < 0")
     t::T = one(T)
-    n == 1 && return t
+    n == 0 && return t
     for i in 1:n
         t = t * (x+y)
     end
@@ -244,7 +247,7 @@ struct MyPointT{T<:Number}
     y::T
 end
 
-# mutable now can be modified
+# mutable, now can be modified
 mutable struct MyPointM
     x
     y
