@@ -50,17 +50,22 @@ for i in 1:4
 end
 #=
 The same code in python:
-"""
+```
 a = [1, 10, 11, 22]
 for i in range(4):
     print(a[i]**2)
-"""
+```
 The same code in C:
-"""
-int a[] = [1, 10, 11, 22]
-for (int i=0; i<4; i++)
-    printf("&i\n", a[i]*a[i])
-"""
+```
+#include <stdio.h>
+
+int main(){
+        int a[] = {1, 10, 11, 22};
+        for (int i=0; i<4; i++)
+            printf("%i\n", a[i]*a[i]);
+        return 0;
+}
+```
 =#
 
 a = Int[1, 10, 11, 22]
