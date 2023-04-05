@@ -11,11 +11,11 @@ Packages discused:
  - [Plots](https://docs.juliaplots.org/stable/) (see also StatsPlots)
  - [DataFrames](https://dataframes.juliadata.org/stable/)
  - [SciML](https://sciml.ai) Ecosystem (Scientific Computing and Machine Learning)
- * [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/)
- * [Optimization.jl](https://docs.sciml.ai/Optimization/stable/)
- * [Symbolics.jl](https://symbolics.juliasymbolics.org/stable/)
- * [Integrals.jl](https://docs.sciml.ai/Integrals/stable/)
- * And much more
+	* [DifferentialEquations.jl](https://diffeq.sciml.ai/stable/)
+	* [Optimization.jl](https://docs.sciml.ai/Optimization/stable/)
+	* [Symbolics.jl](https://symbolics.juliasymbolics.org/stable/)
+	* [Integrals.jl](https://docs.sciml.ai/Integrals/stable/)
+	* And much more
  - [GLM](https://juliastats.org/GLM.jl/stable/)
  - [CSV](https://csv.juliadata.org/stable/)
  
