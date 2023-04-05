@@ -15,7 +15,7 @@ Packages discused:
 	* [Optimization.jl](https://docs.sciml.ai/Optimization/stable/)
 	* [Symbolics.jl](https://symbolics.juliasymbolics.org/stable/)
 	* [Integrals.jl](https://docs.sciml.ai/Integrals/stable/)
-	* And much more
+	* And much more which unfortunately won't be discussed
  - [GLM](https://juliastats.org/GLM.jl/stable/)
  - [CSV](https://csv.juliadata.org/stable/)
  
