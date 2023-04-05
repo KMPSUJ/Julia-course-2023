@@ -41,9 +41,29 @@ b = convert(Float16, 123) # function to convert types
 
 typeof(b)
 
+
+#			 Stable types
+#------------------------------------------------------------
+# in global scope from Julia 1.8
+var_of_static_type::Int8 = 0
+var_of_static_type = Int16(8)
+typeof(var_of_static_type) # Int8
+var_of_static_type = "8"
 #=
-# Static Types???
-# not yet supported in global scope but you can use static types in functions:
+ERROR: MethodError: Cannot `convert` an object of type String to an object of type Int8
+Closest candidates are:
+  convert(::Type{T}, ::Ptr) where T<:Integer at pointer.jl:23
+  convert(::Type{T}, ::T) where T<:Number at number.jl:6
+  convert(::Type{T}, ::Number) where T<:Number at number.jl:7
+  ...
+Stacktrace:
+ [1] top-level scope
+   @ REPL[18]:1
+=#
+
+
+#=
+# You can also use static types in functions (also before Julia 1.8):
 function foo()
     x::Int8 = 3
     return x
@@ -53,6 +73,7 @@ end
 # "::" - from doc: :: operator is read as "is an instance of"
 =#
 
+
 a = 7; (a+1)::Int # will rise a TypeError if the type is wrong
 #=
 julia> a = 7.0; (a+1)::Int # will rise a TypeError
@@ -61,6 +82,7 @@ Stacktrace:
  [1] top-level scope
    @ REPL[31]:1
 =#
+
 
 
 #=
@@ -84,6 +106,8 @@ a == b # true
 a === b # false
 b = a # b now points to a
 a === b # true
+
+
 
 #=
 ------------------------------------------------------------
