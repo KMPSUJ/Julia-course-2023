@@ -138,5 +138,5 @@ Status `~/.julia/environments/v1.8/Project.toml` (empty project)
 =#
 
 # Finally install all packages you will need for further tasks
-pkg> add DataFrames CSV Plots DifferentialEquations Symbolics ModelingToolkit Integrals
+pkg> add DataFrames CSV GLM Plots DifferentialEquations Symbolics ModelingToolkit Integrals
 
