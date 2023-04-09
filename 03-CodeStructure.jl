@@ -269,25 +269,10 @@ struct MyPointPair{T<:Real}
 end
 
 
-#=
-------------------------------------------------------------
-                    Module
-------------------------------------------------------------
-this is how code is grouped in larger projects
-=#
+#               MODULE
+# more on modules in PackageManager section
 module MyMod
-    # here some code
-    # local scope here
-
-    export hello # what will be available for the user who imports this module with "using" statement
-    mymod_abc = "abc"
-    mymod_hello(t) = println("hello $t, $abc");
-end # module
-
-# we can use import or using
-import .MyMod # needs a dot (package manager later)
-MyMod.mymod_hello("name")
-
-using .MyMod
-mymod_hello("name")
-mymod_abc # error, still undefined, only hello was exported
+    export hello
+    abc = "abc"
+    hello(t) = println("hello $t")
+end
