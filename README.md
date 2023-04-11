@@ -7,7 +7,7 @@ Useful links:
  - [Nice cheatsheet](https://juliadocs.github.io/Julia-Cheat-Sheet/)
  - [Plots.jl cheatsheet](https://github.com/sswatson/cheatsheets/blob/master/plotsjl-cheatsheet.pdf)
  
-Packages discused:
+Packages disused:
  - [Plots](https://docs.juliaplots.org/stable/) (see also StatsPlots)
  - [DataFrames](https://dataframes.juliadata.org/stable/)
  - [SciML](https://sciml.ai) Ecosystem (Scientific Computing and Machine Learning)
@@ -22,6 +22,6 @@ Packages discused:
 Other usefull packages (not discussed):
  - [IJulia](https://julialang.github.io/IJulia.jl/stable/)
  - [LaTeXStrings](https://github.com/stevengj/LaTeXStrings.jl)
- - [Flux](https//fluxml.ai/Flux.jl/stable/)
+ - [Flux](https://fluxml.ai/Flux.jl/stable/)
  
 Much more packages can be found here: https://juliahub.com/ui/Packages
