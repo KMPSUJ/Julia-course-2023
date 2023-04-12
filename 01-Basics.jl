@@ -8,6 +8,8 @@ In this file:
  - Variable declaration
  - Basic boolean operations
  - Math
+ - Arrays and for loops over arrays
+ - dot syntax (Broadcasting)
 =#
 
 #=
@@ -148,3 +150,89 @@ A + A
 A * b # 3×3 Matrix{Float64} × 3-element Vector{Float64} -> 3-element Vector{Float64}
 [1.0 2.0 3.0] * [1.0, 2.0, 3.0] # 3-element Vector{Float64} × 3×3 Matrix{Float64}  -> 1-element Vector{Float64}
 [1.0, 2.0, 3.0] * [1.0 2.0 3.0] # 3-element Vector{Float64} × 1×3 Matrix{Float64}  -> 3×3 Matrix{Float64}
+
+
+
+#=
+------------------------------------------------------------
+                    Arrays and for Loops
+------------------------------------------------------------
+=#
+# construct empty array
+A = zeros(10) # vector
+A = zeros(3, 3) # matrix
+A = zeros(3, 3, 4) # 3-dim array
+
+# Array of pi
+A = fill(3.14, (3, 3, 2)) # 3-dim array
+
+# fill existing Array
+fill!(A, 2.0)
+
+# size of array
+length(A) # total number of elements
+size(A) # size in all dimensions
+
+#            for loops over arrays
+A = zeros(5)
+# 1 - classic "C like"
+for i in 1:5
+    println(A[i])
+end
+# 2 - over iterator "python like"
+for elem in A
+    println(elem)
+end
+# 3 - nice in some cases (doesn't care about dimensions)
+for index in eachindex(A)
+    println(A[index])
+end
+
+#          list comprehensions, generators
+A = [i^2 for i in 1:10]
+A = [i+j for i in 1:10, j in 1:3]
+
+G = (sqrt(i) for i in 1:100_000) # memory not allocated
+
+#           map, filter, reduce
+A = [i for i in 1:10]
+
+map(sqrt, A) # map sqrt onto each element of A
+map(x -> x^3, A) # using anonymous function
+
+# inplace version
+B = copy(A)
+map!(x -> x^2, B, A) # equivalent to B = map(x -> x^2, A)
+
+filter(isodd, A)
+
+reduce(+, A)
+
+
+
+#=
+------------------------------------------------------------
+                    Broadcasting
+------------------------------------------------------------
+=#
+A = collect(1:5)
+B = collect(10:10:50) # [10, 20, 30, 40, 50]
+
+sin.(A) == map(sin, A)
+A .* B == [A[i] * B[i] for i 1:5]
+
+# there is now problem to do more operations
+A .+ sin.(exp.(B)) .^ A
+# sometimes it is useful to use @. macro
+sqrt.(B .* A) == @. sqrt(A*B)
+
+# broadcasting works for n-dimensional Arrays
+A = [1.0 0.0; 0.0  1.0] # identity Matrix
+exp(A) != exp.(A)
+
+# you can use any function with broadcasting
+f(x) = 2x + 3
+f.(A)
+
+# So in Julia define your functions for scalars and broadcast them
+# no need for another sin working on Arrays
