@@ -37,6 +37,20 @@ Basics, Math
    `3x + 2y = 3`
 
 
+Data Structures, Function Definitions
+-------------------------------------
+
+1. Implement a 2d-point structure.
+   Define functions for:
+    - adding two points
+    - printing a point
+    - getting the distance between them
+
+2. Define a function to check if a number is a prime number.
+   (It doesn't have to be efficient.)  
+   Then count all prime numbers smaller than 100 000.
+
+
 Leslie model (LinearAlgebra, Plots)
 -----------------------------------
 
@@ -57,15 +71,27 @@ with just 3 age groups (child, adult, elderly) and survival(reproduction) probab
    Plot the evolution in time.
 
 4. Do the same for some different numbers for example  
-`adult -> child 200%` or `adult -> child 130%`.
+   `adult -> child 200%` or `adult -> child 130%`.
 
 5. A stable state exists for (child, adult1, adult2, elderly):  
-`child -> adult1 40%`  
-`adult1 -> adult2 40%`  
-`adult2 -> elderly 30%`  
-`adult1 -> child 200%`  
-`adult2 -> child 125%`  
-Analyse how the system evolves to it (look at the population structure in time).  
-For example take those initial parameters: (8000, 10000, 10000, 3000)
+   `child -> adult1 40%`  
+   `adult1 -> adult2 40%`  
+   `adult2 -> elderly 30%`  
+   `adult1 -> child 200%`  
+   `adult2 -> child 125%`  
+   Analyse how the system evolves to it (look at the population structure in time).  
+   For example take those initial parameters: (8000, 10000, 10000, 3000)
 
 An example solution for this exercise can be found [here](leslie_solution.jl)
+
+
+Simulate Diffusion
+------------------
+
+Numerical approximation for overdamped Langevin equation:  
+`x(t + dt) = x(t) + sqrt(dt) * noise(t)`  
+where `noise(t)` is white noise (Gaussian distribution).  
+This is a model to simulate standard diffusion in one dimension.
+
+1. Plot a few trajectories of such particles.
+2. Generate more trajectories, then plot mean x and mean x^2 in time.
