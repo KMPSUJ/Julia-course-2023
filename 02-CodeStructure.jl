@@ -139,7 +139,7 @@ end
 
 #=
 ------------------------------------------------------------
-                    begin - end
+                    begin - end (and let)
 ------------------------------------------------------------
 Returns the value of the last expression.
 =#
@@ -153,7 +153,9 @@ z == 8
 
 z = (x=7; y=1; x+y)
 
-
+z = let x_local_variable = 3, y_local_variable = 2
+    x_local_variable + y_local_variable^2
+end
 
 #=
 ------------------------------------------------------------
