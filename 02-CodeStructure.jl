@@ -23,6 +23,8 @@ end
 startingKeyword - examples: for, while, struct, function, begin
 =#
 
+
+
 #=
 ------------------------------------------------------------
                     Control Flow
@@ -50,17 +52,22 @@ for i in 1:4
 end
 #=
 The same code in python:
-"""
+```
 a = [1, 10, 11, 22]
 for i in range(4):
     print(a[i]**2)
-"""
+```
 The same code in C:
-"""
-int a[] = [1, 10, 11, 22]
-for (int i=0; i<4; i++)
-    printf("&i\n", a[i]*a[i])
-"""
+```
+#include <stdio.h>
+
+int main(){
+        int a[] = {1, 10, 11, 22};
+        for (int i=0; i<4; i++)
+            printf("%i\n", a[i]*a[i]);
+        return 0;
+}
+```
 =#
 
 a = Int[1, 10, 11, 22]
@@ -129,15 +136,16 @@ finally
 end
 
 
+
 #=
 ------------------------------------------------------------
-                    begin - end
+                    begin - end (and let)
 ------------------------------------------------------------
-Returns the value of the lase expression.
+Returns the value of the last expression.
 =#
 z = begin
     x = 7
-    y =1
+    y = 1
     x + y
 end
 
@@ -145,7 +153,9 @@ z == 8
 
 z = (x=7; y=1; x+y)
 
-
+z = let x_local_variable = 3, y_local_variable = 2
+    x_local_variable + y_local_variable^2
+end
 
 #=
 ------------------------------------------------------------
@@ -153,7 +163,7 @@ z = (x=7; y=1; x+y)
 ------------------------------------------------------------
 =#
 
-# basic structure
+# standard syntax
 function foo()
     println("hello")
 end
@@ -192,18 +202,18 @@ function myadd(x, y)
     println("x+y") # won't be evaluated
 end
 
-# Type specifications
+# specify argument types
 mysub(x::Int, y::Int) = x - y
 mysub(x::Int16, y::Int16) = x - y
 
-# retyrn value specification
+# specify return type
 mymul(x, y)::Float16 = x * y
 
 # more advanced stuff
 function mypower(x::T, y::T, n::Integer)::T where T<:Number
     n < 0 && error("n < 0")
     t::T = one(T)
-    n == 1 && return t
+    n == 0 && return t
     for i in 1:n
         t = t * (x+y)
     end
@@ -239,7 +249,7 @@ struct MyPointT{T<:Number}
     y::T
 end
 
-# mutable now can be modified
+# mutable, now can be modified
 mutable struct MyPointM
     x
     y
@@ -261,25 +271,10 @@ struct MyPointPair{T<:Real}
 end
 
 
-#=
-------------------------------------------------------------
-                    Module
-------------------------------------------------------------
-this is how code is grouped in larger projects
-=#
+#               MODULE
+# more on modules in PackageManager section
 module MyMod
-    # here some code
-    # local scope here
-
-    export hello # what will be available for the user who imports this module with "using" statement
-    mymod_abc = "abc"
-    mymod_hello(t) = println("hello $t, $abc");
-end # module
-
-# we can use import or using
-import .MyMod # needs a dot (package manager later)
-MyMod.mymod_hello("name")
-
-using .MyMod
-mymod_hello("name")
-mymod_abc # error, still undefined, only hello was exported
+    export hello
+    abc = "abc"
+    hello(t) = println("hello $t")
+end
