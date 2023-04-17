@@ -95,3 +95,51 @@ This is a model to simulate standard diffusion in one dimension.
 
 1. Plot a few trajectories of such particles.
 2. Generate more trajectories, then plot mean x and mean x^2 in time.
+
+
+Geometric figures
+-----------------
+
+The idea of this task is to see how polymorphism works in Julia.
+It's more for programers than scientists.
+Be aware that the proposed implementation will fail in some "edge cases".
+
+Implement geometric figures that:
+ - Are subtypes of an abstract type (named `AbstractFigure`)
+ - Have those functions implemented:
+    - `is_point_in(f::SomeFigure, x::Real, y::Real)::Bool`
+    - `edge_approx(f::SomeFigure)::Mtrix{Float64}`
+
+`edge_approx` should return a table of points which approximate the edge
+of the figure `[x1 y1; x2 y2; x3 y3; ...; x100 y100]`.
+For simple figures return about 100 points (it won't matter).
+
+1. Define an abstract type `AbstractFigure`
+
+2. Define those Types:
+    - `Circle`
+    - `Rectangle`
+
+3. Implement functions `is_point_in` and `edge_approx` for `Circle` and `Rectangle`.
+
+4. Implement a function:  
+   `overlapping(f1::AbstractFigure, f2::AbstractFigure)::Bool`  
+   which will tell if two figures overlap (approximate it using `edge_approx`).
+   Don't use the fact that `edge_approx` returns exactly 100 points.
+   Make this function work "correct" for any number of points returned.
+
+5. Impement `overlapping(f1::Circle, f2::Circle)::Bool`
+   in a more efficent way.
+
+6. Make an alias of `Vector{T} where T<:AbstractFigure` named `FigureList`
+
+7. Implement `is_point_in` and `edge_approx` for `FigureList`.
+   Don't care about the number of points returned by `edge_approx`.
+
+Important notes:
+ - Look which method of `overlapping` Julia picks
+ - See that the generic `overlapping` works for `FigureList`
+ - See that a `FigureList` containing a `FigureList` still works.
+
+
+
