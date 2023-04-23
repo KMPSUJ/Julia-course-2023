@@ -122,24 +122,22 @@ For simple figures return about 100 points (it won't matter).
 
 3. Implement functions `is_point_in` and `edge_approx` for `Circle` and `Rectangle`.
 
-4. Implement a function:  
-   `overlapping(f1::AbstractFigure, f2::AbstractFigure)::Bool`  
+4. Make an alias of `Vector{T} where T<:AbstractFigure` named `FigureList`
+   It won't be a subtype of `AbstractFigure`.
+
+5. Implement `is_point_in` and `edge_approx` for `FigureList`.  
+   Don't care about the number of points returned by `edge_approx`.
+
+6. Implement a function:  
+   `overlapping(f1::Union{AbstractFigure, FigureList}, f2::Union{AbstractFigure, FigureList})::Bool`  
    which will tell if two figures overlap (approximate it using `edge_approx`).
    Don't use the fact that `edge_approx` returns exactly 100 points.
    Make this function work "correct" for any number of points returned.
 
-5. Impement `overlapping(f1::Circle, f2::Circle)::Bool`
+7. Impement `overlapping(f1::Circle, f2::Circle)::Bool`
    in a more efficent way.
-
-6. Make an alias of `Vector{T} where T<:AbstractFigure` named `FigureList`
-
-7. Implement `is_point_in` and `edge_approx` for `FigureList`.
-   Don't care about the number of points returned by `edge_approx`.
 
 Important notes:
  - Look which method of `overlapping` Julia picks
- - See that the generic `overlapping` works for `FigureList`
- - See that a `FigureList` containing a `FigureList` still works.
-
-
+ - See that the generic `overlapping` works for both `FigureList` and `AbstractFigure`
 
