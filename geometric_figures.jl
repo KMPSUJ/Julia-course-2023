@@ -72,7 +72,7 @@ function overlapping(f1::Union{AbstractFigure, FigureList}, f2::Union{AbstractFi
         # check if f1 is laying in f2
         f1_in_f2 = any([is_point_in(f2, edge1[t, 1], edge1[t, 2]) for t in 1:size(edge1, 1)])
         # check if f2 is laying in f1
-	f2_in_f1 = any([is_point_in(f1, edge2[t, 1], edge2[t, 2]) for t in 1:size(edge2, 1)])
+        f2_in_f1 = any([is_point_in(f1, edge2[t, 1], edge2[t, 2]) for t in 1:size(edge2, 1)])
         return f1_in_f2 || f2_in_f1
 end
 

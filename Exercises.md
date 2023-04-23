@@ -137,7 +137,7 @@ For simple figures return about 100 points (it won't matter).
 7. Impement `overlapping(f1::Circle, f2::Circle)::Bool`
    in a more efficent way.
 
+
 Important notes:
  - Look which method of `overlapping` Julia picks
  - See that the generic `overlapping` works for both `FigureList` and `AbstractFigure`
-
