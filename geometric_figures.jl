@@ -55,20 +55,8 @@ function edge_approx(f::Rectangle)::Matrix{Float64}
 end
 
 
-# check if two figures are overlapping
-function overlapping(f1::AbstractFigure, f2::AbstractFigure)::Bool
-	edge1 = edge_approx(f1)
-	edge2 = edge_approx(f2)
-	return any(is_point_in.(f2, edge1[:, 1], edge1[:, 2])) || any(is_point_in.(f1, edge2[:, 1], edge2[:, 2]))
-end
-
-function overlapping(f1::Circle, f2::Circle)::Bool
-	return (f1.x - f2.x)^2 + (f1.y - f2.y)^2 <= (f1.r + f2.r)^2
-end
-
-
-# Figure list is also a figure
-FigureList =  Vector{T} where T<:AbstractFigure
+# Figure list
+FigureList = Vector{T} where T<:AbstractFigure
 
 is_point_in(f::FigureList, x::Real, y::Real)::Bool = any(is_point_in.(f, x, y))
 
@@ -76,3 +64,18 @@ function edge_approx(f::FigureList)::Matrix{Float64}
 	return vcat(edge_approx.(f)...)
 end
 
+
+# check if two figures are overlapping
+function overlapping(f1::Union{AbstractFigure, FigureList}, f2::Union{AbstractFigure, FigureList})::Bool
+	edge1 = edge_approx(f1)
+	edge2 = edge_approx(f2)
+        # check if f1 is laying in f2
+        f1_in_f2 = any([is_point_in(f2, edge1[t, 1], edge1[t, 2]) for t in 1:size(edge1, 1)])
+        # check if f2 is laying in f1
+        f2_in_f1 = any([is_point_in(f1, edge2[t, 1], edge2[t, 2]) for t in 1:size(edge2, 1)])
+        return f1_in_f2 || f2_in_f1
+end
+
+function overlapping(f1::Circle, f2::Circle)::Bool
+	return (f1.x - f2.x)^2 + (f1.y - f2.y)^2 <= (f1.r + f2.r)^2
+end
